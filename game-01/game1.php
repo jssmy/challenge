@@ -21,10 +21,10 @@ function calculate_subset($M=array(),$N)
 
 function calculate_subset_arr($M=array(),$N)
 {
-    /* $tmpArr alacena una copia idéntica a $M*/
+    /* se guarda una copia idéntica de $M  */
     $tmpArr=$M;
     /* la matriz $M tiene un conjunto de elemntos enteros [m1,m2,m3,m4,m5...mn] */
-    /*  se procede a analizar cada uno de los valores de $M */
+    /*  se procede a analizar cada uno de los elementos de $M */
     foreach ($M as $index =>$val)
     {
         /* el valor que se analizará debe ser menor o igual a N */
@@ -40,6 +40,7 @@ function calculate_subset_arr($M=array(),$N)
          */
         if($val<=$N && in_array($N-$val,$tmpArr))
         {
+            /* se obtiene el primer sub conjunto que da igual a N */
             return [$val,$N-$val];
         }
     }

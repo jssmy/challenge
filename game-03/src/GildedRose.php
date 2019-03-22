@@ -39,6 +39,7 @@ class GildedRose
 
     public function tick()
     {
+        /* version 1.0 */
         /*
         if ( !in_array($this->name,['Aged Brie','Backstage passes to a TAFKAL80ETC concert'])) {
             if ($this->quality > 0 && $this->name != 'Sulfuras, Hand of Ragnaros') {
@@ -88,34 +89,59 @@ class GildedRose
 */
 
 
-        /* reducir el día */
+
+        /* se calcula la cantidad días de venta */
         $this->sellIn                   += $this->degradeSellin;
+
         switch ($this->name){
             case "normal":
+                /* para los productos normales */
+                /* se calcula la la cantidad en que se degrada la calidad de acuerdo a los dpias de venta */
+                /* para este producto si los días de ventas ha pasado la calidad se degrada en dos, de lo contrario
+                la calidad se degrada en uno
+                 */
                 $this->degradeQuality   = $this->sellIn<SELF::MIN_SELLIN?-SELF::DEGRADE_TWO:-SELF::DEGRADE_ONE;
                 break;
             case "Aged Brie":
-                $this->degradeQuality   = $this->sellIn<SELF::MIN_SELLIN?self::DEGRADE_TWO:SELF::DEGRADE_ONE;
+                /* para los productos Aged*/
+                /* se calcula la cantidad en que se degrada la calidad de acuerdo a los días de venta */
+                /* para este producto si los días de venta ha paso la calidad del producto se incrementa en dos, de lo
+                contrario la calidad aumenta en uno
+                 */
+                $this->degradeQuality   = $this->sellIn<SELF::MIN_SELLIN?SELF::DEGRADE_TWO : SELF::DEGRADE_ONE;
                 break;
             case "Sulfuras, Hand of Ragnaros":
+                   /*Para los productos Sulfuras
+                    * nunca deben ser vendidos y no se degrada su calidad
+                    * */
                     $this->sellIn++;
                     $this->degradeQuality= SELF::MIN_QUALITY;
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
-                    /* verificar que nopo haya pasado de la fecha, el degrade deberpia ser la misma cantidad de
-                    la calidad para que el resultado de la calidad sea 0
-                    */
+                    /* Para los procductos Backstage
+                     * si ha pasado los días de venta la calidad se degrada en uno
+                     */
                     $this->degradeQuality = $this->sellIn<SELF::MIN_SELLIN?-$this->quality:$this->degradeQuality;
-                    $this->degradeQuality = ($this->sellIn>=SELF::MIN_QUALITY && $this->sellIn<SELF::DEGRADE_FIVE)?SELF::DEGRADE_THREE:$this->degradeQuality;
+                    /*si los días de ventas está entre el día mínimo y 5 la calidad aumenta en 3*/
+                    $this->degradeQuality = ($this->sellIn>=SELF::MIN_SELLIN && $this->sellIn<SELF::DEGRADE_FIVE)?SELF::DEGRADE_THREE:$this->degradeQuality;
+                    /* si los días de venta esta entre 5 y 10 la calidad aumenta en 2
+                    pero si la cantidad de días es mayo a 10 entonces la calidad aumenta en 1
+                    */
+
                     $this->degradeQuality = ($this->sellIn>SELF::DEGRADE_FIVE && $this->sellIn<SELF::DEGRADE_TEN)?SELF::DEGRADE_TWO: ($this->sellIn>=SELF::DEGRADE_TEN?SELF::DEGRADE_ONE:$this->degradeQuality);
                 break;
             case "Conjured Mana Cake":
+                /*para el caso de conjured */
+                /* si los días de venta ha pasado entonces la calidad se degrada en 4 de lo contrario se degrada en 2 */
                 $this->degradeQuality = $this->sellIn<SELF::MIN_SELLIN?-SELF::DEGRADE_FOUR:-SELF::DEGRADE_TWO;
                 break;
         }
 
+        /* degradar la calidad */
         $this->quality              += $this->degradeQuality;
+        /* verificar que la calidad no sea menor a la calidad mínima*/
         $this->quality              =  $this->quality<SELF::MIN_QUALITY      ?   SELF::MIN_QUALITY:$this->quality;
+        /* verificar que la calidad no pase la calidad máxima */
         $this->quality              =  $this->quality>SELF::MAX_QUALITY      ?   SELF::MAX_QUALITY:$this->quality;
 
     }

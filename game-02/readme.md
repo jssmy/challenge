@@ -17,3 +17,8 @@ A service named YOLO synchronously calls an API named WTF. WTF tends to be very 
 You're required to design an architecture using design patterns that allow YOLO to find out when WTF is having trouble processing requests. Ideally, this architecture should let YOLO know when to stop issuing calls to WTF until WTF is available again.
 
 Be sure to answer this question by outlining the concepts used to tackle the problem, as well as all meaningful interactions between the architecture's components. No programming is required!
+
+#Solución
+
+
+![Cat](https://github.com/jssmy/challenge/blob/master/game-02/arquitectura.png)

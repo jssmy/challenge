@@ -18,7 +18,7 @@ You're required to create a function that receives an array (M) and integer valu
 - $n es el valor que sumado a $m1 da igual a $N, entonces $n=$N-$m1
 - Verificar si $n se encuentra en el vector temporal $tmpArr, si fuera el caso entonces $m1 y $n es el primer subconjunto que sumado es igual a $N 
    
-  
+ ![Cat](https://github.com/jssmy/challenge/blob/master/game-01/game-01.png)
    
    
     

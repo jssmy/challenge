@@ -18,8 +18,16 @@ You're required to design an architecture using design patterns that allow YOLO 
 
 Be sure to answer this question by outlining the concepts used to tackle the problem, as well as all meaningful interactions between the architecture's components. No programming is required!
 
-##Solución
+## Solución
 
 - Para concer la disponibilidad de WTF desde YOLO se lanza un PING, se analiza la respuesta del mismo para decidir si las solicitudes se seguirán enviando.
-- Se tiene un gestor de colas el cual encolará las solcitudes cuando el tiempo de respuesta de WFT sea mayor a 20 segundos (no llegar al límite del tiempo de solicitud para evitar que YOLO se caiga). 
+- Se tiene un gestor de colas el cual encolará las solcitudes cuando el tiempo de respuesta de WFT sea mayor a 20 segundos (no llegar al límite del tiempo de solicitud para evitar que YOLO se caiga).
+
+##
+- La cola se produce cuando la demanda de solicitudes (YOLO) excede la capacidad del servicio (WTF)
+- Con el PING se puede diagnosticar el estado de la comunicación entre un HOST y otros equipos remotos.
+
+
+
+  
 ![Cat](https://github.com/jssmy/challenge/blob/master/game-02/arquitectura.png)

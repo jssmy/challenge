@@ -5,6 +5,6 @@
 
 ## Guegis
 
-- [Don't permute](https://github.com/papaya-holdings/jigsaw/tree/master/game-01)
-- [Timeout troubles](https://github.com/papaya-holdings/jigsaw/tree/master/game-02)
-- [Spaghetti code](https://github.com/papaya-holdings/jigsaw/tree/master/game-03)
+- Don't permute
+- Timeout troubles
+- Spaghetti code
